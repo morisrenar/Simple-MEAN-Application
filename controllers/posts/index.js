@@ -50,9 +50,17 @@ var updatePost = (req, res) => {
     });
 }
 
+var deletepost = (req, res) => {
+    Post.findByIdAndRemove(req.params.id, (err, post) => {
+        if(err) { res.send(500, err); }
+        res.json(200, { 'deleted': true });
+    });
+}
+
 module.exports = {
     createPost,
     getPosts,
     getPost,
-    updatePost
+    updatePost,
+    deletepost
 };
